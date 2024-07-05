@@ -40,9 +40,10 @@ int atende_cliente(int descritor, struct sockaddr_in endCli)
 
       printf("> ");
       fgets(bufout, MAX_SIZE, stdin); /* le dados do teclado */
+      send(descritor, &bufout, strlen(bufout), 0); /* enviando dados ...  */
+
       if (strncmp(bufout, "FIM", 3) == 0)
         break;
-      send(descritor, &bufout, strlen(bufout), 0); /* enviando dados ...  */
     } while ((strncmp(bufout, "CAMBIO", 6) != 0));
 
     if (strncmp(bufout, "FIM", 3) == 0)
